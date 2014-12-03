@@ -1,0 +1,157 @@
+/*
+    Document   : css/main．css
+    Created on : 2014-12-02 09:38 AM
+    Author     : barryrlmurphy
+    Description: 
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    background: #edede8;
+}
+
+.clearfix {
+  overflow: auto;
+  zoom: 1;
+}
+
+.super-container {
+    width: 100%;
+    height: 100%;
+    background: #edede8;
+    margin: 0;
+    padding: 10px 0;
+    font-size: 14px;
+    font-family: lato, Helvetica, Arial, 'Sans Serif';
+    float: left;
+}
+
+.refine {
+    width: 28%;
+    height: auto;
+    padding: 10px;
+    margin: 0 1%;
+    background: #ffffff;
+    float: left;
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.7);
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.7);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.7);
+}
+.refine ul {
+    margin: 0;
+    padding: 0;
+}
+.refine li {
+    list-style: none;
+    padding: 6px 0;
+}
+.refine .header {
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 0;
+}
+.refine .sub-header {
+    font-size: 16px;
+}
+
+.ads-container {
+    width: 68%;
+    height: 100%;
+    margin: 0 1%;
+    float: left;
+}
+
+
+.listing {
+    float: left;
+    width: 230px;
+    max-height: 220px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    padding: 5px;
+    margin: 0 10px 10px 0;
+}
+.listing a:link, .listing a:visited, .listing a:active {
+    color: #666;
+    text-decoration: none;
+}
+.listing .photo-frame {
+    position: relative;
+    width: 100%;
+    background-color: #e2d3aa;
+    min-height: 60px;
+    text-align: center;
+}
+.listing .photo-frame .photo {
+    max-width: 220px;
+    max-height: 165px;
+    _width: 220px;
+    _height: 165px;
+    min-height: 60px;
+    border: 0;
+    vertical-align: bottom;
+}
+.listing .listing-info {
+    position: relative;
+    text-align: left;
+    height: 44px;
+}
+.listing .listing-info .title {
+    font-size: 14px;
+    height: 19px;
+    padding: 5px 0 0 0;
+    color: #b8b09b;
+    overflow: hidden;
+    font-weight: bold;
+}
+.listing .listing-info .title a {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+}
+.listing .listing-info .county {
+    left: 0;
+    background: url(http://load.donedeal.ie/layout/2469/images/misc-sprite.png) -4px -3px no-repeat;
+    padding: 0 0 0 15px;
+}
+.listing .listing-info .county, .listing .listing-info .year, .listing .listing-info .section, .listing .listing-info .time {
+    position: absolute;
+    bottom: 0;
+    color: #8c8b71;
+    font-size: 12px;
+}
+.listing .listing-info .price {
+    position: absolute;
+    top: -33px;
+    right: -1px;
+    background: #ffdc57;
+    color: #303030;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 16px;
+    padding: 5px 6px 3px 6px;
+}
+.listing .listing-info .price a {
+    color: #303030;
+}
+.listing .listing-info .year, .listing .listing-info .time {
+    right: 0;
+}
+.rnd-corners-all {
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+.shadow-default {
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.7);
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.7);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.7);
+}

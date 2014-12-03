@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<html>
+<head>
+    <title>playing with ractive</title>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+</head>
+<body>
+    <div class="super-container clearfix">
+        <div class="refine">
+             <ul>
+                 <li class="header">
+                     Refine
+                 </li>
+                 <li>
+                     <span class="sub-header">Location: </span>
+                     <select id="county" name="county" on-change='searchCounty' title="Specify the county you live in or where the item can be picked up from" required="true" aria-required="true" aria-invalid="false">
+                        <option value="" selected="selected">Select county</option>
+                        <option value="Antrim">Antrim</option>
+                        <option value="Armagh">Armagh</option>
+                        <option value="Carlow">Carlow</option>
+                        <option value="Cavan">Cavan</option>
+                        <option value="Clare">Clare</option>
+                        <option value="Cork">Cork</option>
+                        <option value="Derry">Derry</option>
+                        <option value="Donegal">Donegal</option>
+                        <option value="Down">Down</option>
+                        <option value="Dublin">Dublin</option>
+                        <option value="Fermanagh">Fermanagh</option>
+                        <option value="Galway">Galway</option>
+                        <option value="Kerry">Kerry</option>
+                        <option value="Kildare">Kildare</option>
+                        <option value="Kilkenny">Kilkenny</option>
+                        <option value="Laois">Laois</option>
+                        <option value="Leitrim">Leitrim</option>
+                        <option value="Limerick">Limerick</option>
+                        <option value="Longford">Longford</option>
+                        <option value="Louth">Louth</option>
+                        <option value="Mayo">Mayo</option>
+                        <option value="Meath">Meath</option>
+                        <option value="Monaghan">Monaghan</option>
+                        <option value="Offaly">Offaly</option>
+                        <option value="Roscommon">Roscommon</option>
+                        <option value="Sligo">Sligo</option>
+                        <option value="Tipperary">Tipperary</option>
+                        <option value="Tyrone">Tyrone</option>
+                        <option value="Waterford">Waterford</option>
+                        <option value="Westmeath">Westmeath</option>
+                        <option value="Wexford">Wexford</option>
+                        <option value="Wicklow">Wicklow</option>
+                    </select>
+                 </li>
+                 <li>
+                     <span class="sub-header">Search: </span>
+                     <input type="text" name="word-search" value="test" on-tap="searchWord"/>
+                 </li>
+             </ul>   
+        </div>    
+        <div class="ads-container" id="ads-container"></div>
+    </div>
+
+    <script src='js/jquery-1.11.1.min.js'></script>
+    <script src='https://cdn.ractivejs.org/latest/ractive.min.js'></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    
+    
+    <script id='ad-template' type='text/ractive'>
+        {{#each ads}}
+        <div class="listing shadow-default save-ad-js ">
+            <div class="photo-frame">
+                <a href="http://cars.donedeal.ie/cars-for-sale/hyundai-getz-1-1-5dr/8220819" title="Hyundai Getz 1.1 5DR">
+                    <img src="{{image}}" data-original="{{image}}" class="lazy photo" alt="{{title}}" style="display: inline;">
+                </a>
+            </div>
+            <div class="listing-info">
+                <div class="title">
+                    <a href="http://cars.donedeal.ie/cars-for-sale/hyundai-getz-1-1-5dr/8220819" title="{{title}}">
+                        <span class="multiline-truncate">{{title}}</span></a>
+                    <span>{{published}}</span>
+                </div>
+                <span class="county">{{county}}</span>
+                <span class="year">{{year}}</span>
+                <div class="price shadow-default rnd-corners-left">
+                    <a href="http://cars.donedeal.ie/cars-for-sale/hyundai-getz-1-1-5dr/8220819" title="Hyundai Getz 1.1 5DR">&euro;{{price}}</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+
+</body>
+</html>
