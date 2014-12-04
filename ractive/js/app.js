@@ -28,18 +28,20 @@ $(document).ready(function(){
       success: function(data, textStatus, jqXHR) {
         console.log("search api call success :)");
         console.log(data.ads);
-        var tempNum = 35677926;
+        var imgPlaceholder = "http://load.donedealtest2.com/layout/images/no-photo-220x165.png";
+        var thumb;
         for(var i=0;i<data.ads.length;i++){
-          console.log("title: " + data.ads[i].header + ", id: " + data.ads[i].id);
-          tempNum = parseInt(tempNum)-parseInt(i);
+          thumb = imgPlaceholder;
+          if(data.ads[i].photos){
+            thumb = data.ads[i].photos[0]["photo-260x260"];      
+          }
           var ad = {
               title: data.ads[i].header,
               published: data.ads[i].displayAge,
               price: data.ads[i].price,
               county: data.ads[i].county,
-              image: "http://photos2.donedeal.ie/cars/2011-audi-a6-2-0tdi-170bhp-s-line-special-edition/SearchThumbLarge/" + tempNum + ".jpeg"
+              image: thumb
             };
-          console.log(ad);
           //ractive.reset();
           ractive.push('ads',ad);
         }
@@ -61,7 +63,7 @@ $(document).ready(function(){
 });
 
 //"section": "all", "startTime":1416325931669,"max":40,"start":0,"words":"","source":"all","area":["Ireland"],"adType":"forsale","sort":"publishDate desc"}
-var searchFilters = {"section": "all", "startTime":1416325931669,"max":40,"start":0,"words":"","source":"all","area":["Ireland"],"adType":"forsale","sort":"publishDate desc"};
+var searchFilters = {"section": "cars", "startTime":1416325931669,"max":40,"start":0,"words":"","source":"all","area":["Ireland"],"adType":"forsale","sort":"publishDate desc"};
 
 var ads = [
     {

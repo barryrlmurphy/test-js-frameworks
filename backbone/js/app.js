@@ -5,59 +5,67 @@
 * Time: 09:39 AM
 */
 
+//processData: false
+
 $(document).ready(function(){
   
-   var ractive = new Ractive({
-      // The `el` option can be a node, an ID, or a CSS selector.
-      el: 'ads-container',
-
-      // We could pass in a string, but for the sake of convenience
-      // we're passing the ID of the <script> tag above.
-      template: '#ad-template',
-
-      // Here, we're passing in some initial data
-      data: { ads: [] }
-    });
-    
-    $.ajax({
-      url: 'https://www.donedealtest2.com/api/v2/find/',
-      dataType: "json",
-      contentType: "application/json",
-      data: JSON.stringify(searchFilters),
-      type: "POST",
-      success: function(data, textStatus, jqXHR) {
-        console.log("search api call success :)");
-        console.log(data.ads);
-        var tempNum = 35677926;
-        for(var i=0;i<data.ads.length;i++){
-          console.log("title: " + data.ads[i].header + ", id: " + data.ads[i].id);
-          tempNum = parseInt(tempNum)-parseInt(i);
-          var ad = {
-              title: data.ads[i].header,
-              published: data.ads[i].displayAge,
-              price: data.ads[i].price,
-              county: data.ads[i].county,
-              image: "http://photos2.donedeal.ie/cars/2011-audi-a6-2-0tdi-170bhp-s-line-special-edition/SearchThumbLarge/" + tempNum + ".jpeg"
-            };
-          console.log(ad);
-          //ractive.reset();
-          ractive.push('ads',ad);
-        }
+  // Define the model
+  ad = Backbone.Model.extend();
+  
+  // Define the collection
+  ads = Backbone.Collection.extend(
+      {
+          model: ad,
+          // Url to request when fetch() is called
+          url: 'https://www.donedealtest2.com/api/v2/find/',
+          parse: function(response) {
+              return response.ads;
+          },
+          // Overwrite the sync method to pass over the Same Origin Policy
+          sync: function(method, model, options) {
+              var that = this;
+              var params = _.extend({
+                  type: "POST",
+                  dataType: 'json',
+                  contentType: "application/json",
+                  data: JSON.stringify(searchFilters),
+                  url: that.url
+              }, options);
+  
+              return $.ajax(params);
+          }
+      });
+  
+  // Define the View
+  adsView = Backbone.View.extend({
+      initialize: function() {
+        _.bindAll(this, 'render');
+        // create a collection
+        this.collection = new ads;
+        // Fetch the collection and call render() method
+        var that = this;
+        this.collection.fetch({
+          success: function () {
+              that.render();
+          }
+        });
       },
-      error: function(jqXHR, textStatus, errorThrown) {
-        console.log("search api call error: " + errorThrown);
+      // Use an extern template
+      template: _.template($('#adsTemplate').html()),
+  
+      render: function() {
+        console.log("render");
+        console.log(this.collection.toJSON());
+          // Fill the html with the template and the collection
+          $(this.el).html(this.template({ ads: this.collection.toJSON() }));
       }
-    });
-    
-    ractive.on( 'searchWord', function () {
-      alert("test");
-      // ractive.set({
-      //   username: name,
-      //   signedIn: true,
-      //   notSignedIn: false
-      // });
-    });
-   
+  });
+  
+  var app = new adsView({
+      // define the el where the view will render
+      el: $('#ads-container')
+  });
+
 });
 
 //"section": "all", "startTime":1416325931669,"max":40,"start":0,"words":"","source":"all","area":["Ireland"],"adType":"forsale","sort":"publishDate desc"}
