@@ -65,39 +65,31 @@ $(document).ready(function(){
       // define the el where the view will render
       el: $('#ads-container')
   });
+  
+  var View = Backbone.View.extend({
+    events: {
+      "change #county": "change"
+    },
+    template: _.template($('#countyTemplate').html()),
+  
+    change: function(e){
+      console.log( "change event" );
+      var selectedCounty = $(e.currentTarget).val();
+      console.log("selectedCounty", selectedCounty);
+      searchFilters["area"] = [selectedCounty];
+      console.log("searchFilters", searchFilters);
+      app.render();
+    },
+  
+    render: function(){
+      this.$el.html(this.template());
+    }
+  });
+  
+  new View({ el: "#countyContainer" }).render();
 
 });
 
 //"section": "all", "startTime":1416325931669,"max":40,"start":0,"words":"","source":"all","area":["Ireland"],"adType":"forsale","sort":"publishDate desc"}
-var searchFilters = {"section": "all", "startTime":1416325931669,"max":40,"start":0,"words":"","source":"all","area":["Ireland"],"adType":"forsale","sort":"publishDate desc"};
+var searchFilters = {"section": "all", "startTime":1416325931669,"max":40,"start":0,"words":"","source":"all","area":["Cork"],"adType":"forsale","sort":"publishDate desc"};
 
-var ads = [
-    {
-      title: 'Ford Focus Zetac 1.4 4DR',
-      published: "3 hours ago",
-      price: 5950,
-      county: "Wexford",
-      image: "http://photos2.donedeal.ie/cars/hyundai-getz-1-1-5dr/SearchThumbLarge/35639875.jpeg"
-    },
-    {
-      title: 'BMW 3 Series 1.6 5DR',
-      published: "6 hours ago",
-      price: 4950,
-      county: "Waterford",
-      image: "http://photos2.donedeal.ie/cars/2004-merc-c200-cdi-auto/SearchThumbLarge/32052413.jpeg"
-    },
-    {
-      title: 'Opel Astra 1.6 Hatchback',
-      published: "1 day ago",
-      price: 10000,
-      county: "Offaly",
-      image: "http://photos2.donedeal.ie/cars/mercedes-benz-slk-class-slk-200-kompres/SearchThumbLarge/34230569.jpeg"
-    },
-    {
-      title: 'VW Golf 1.4 Diesel - BARGAIN',
-      published: "3 days ago",
-      price: 3000,
-      county: "Cork",
-      image: "http://photos2.donedeal.ie/cars/mercedes-benz-slk-class-slk-200-kompres/SearchThumbLarge/34230568.jpeg"
-    }
-  ];

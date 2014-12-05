@@ -22,9 +22,9 @@ $(document).ready(function(){
     console.log("app started")
     var app = angular.module('adSearch', []);
     
-    // app.controller('SearchController', function(){
-    //     this.ads = ads;
-    // });
+    app.controller('SearchController', function(){
+        this.ads = ads;
+    });
     
 });
 
