@@ -15,49 +15,8 @@
                  <li class="header">
                      Refine
                  </li>
-                 <li id="countyContainer">
-                    <!-- <span class="sub-header">Location: </span>-->
-                    <!-- <select id="county" name="county" on-change='searchCounty' title="Specify the county you live in or where the item can be picked up from" -->
-                    <!--            required="true" aria-required="true" aria-invalid="false">-->
-                    <!--    <option value="" selected="selected">Select county</option>-->
-                    <!--    <option value="Antrim">Antrim</option>-->
-                    <!--    <option value="Armagh">Armagh</option>-->
-                    <!--    <option value="Carlow">Carlow</option>-->
-                    <!--    <option value="Cavan">Cavan</option>-->
-                    <!--    <option value="Clare">Clare</option>-->
-                    <!--    <option value="Cork">Cork</option>-->
-                    <!--    <option value="Derry">Derry</option>-->
-                    <!--    <option value="Donegal">Donegal</option>-->
-                    <!--    <option value="Down">Down</option>-->
-                    <!--    <option value="Dublin">Dublin</option>-->
-                    <!--    <option value="Fermanagh">Fermanagh</option>-->
-                    <!--    <option value="Galway">Galway</option>-->
-                    <!--    <option value="Kerry">Kerry</option>-->
-                    <!--    <option value="Kildare">Kildare</option>-->
-                    <!--    <option value="Kilkenny">Kilkenny</option>-->
-                    <!--    <option value="Laois">Laois</option>-->
-                    <!--    <option value="Leitrim">Leitrim</option>-->
-                    <!--    <option value="Limerick">Limerick</option>-->
-                    <!--    <option value="Longford">Longford</option>-->
-                    <!--    <option value="Louth">Louth</option>-->
-                    <!--    <option value="Mayo">Mayo</option>-->
-                    <!--    <option value="Meath">Meath</option>-->
-                    <!--    <option value="Monaghan">Monaghan</option>-->
-                    <!--    <option value="Offaly">Offaly</option>-->
-                    <!--    <option value="Roscommon">Roscommon</option>-->
-                    <!--    <option value="Sligo">Sligo</option>-->
-                    <!--    <option value="Tipperary">Tipperary</option>-->
-                    <!--    <option value="Tyrone">Tyrone</option>-->
-                    <!--    <option value="Waterford">Waterford</option>-->
-                    <!--    <option value="Westmeath">Westmeath</option>-->
-                    <!--    <option value="Wexford">Wexford</option>-->
-                    <!--    <option value="Wicklow">Wicklow</option>-->
-                    <!--</select>-->
-                 </li>
-                 <li>
-                     <span class="sub-header">Search: </span>
-                     <input type="text" name="word-search" value="test" on-tap="searchWord"/>
-                 </li>
+                 <li id="countyContainer"> </li>
+                 <li id="searchContainer"> </li>
              </ul>   
         </div>    
         <div class="ads-container" id="ads-container"></div>
@@ -69,8 +28,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.0/backbone.localStorage-min.js" type="text/javascript"></script>  
   <script src="js/app.js" type="text/javascript"></script>
   
+  
+  <!-- templates --> 
+  
   <!-- ad template -->
-  <script id='adsTemplate' type='text/ractive'>
+  <script id='adsTemplate' type='text/template'>
         <% _.each(ads, function (ad) { %>
         <div class="listing shadow-default save-ad-js ">
             <div class="photo-frame">
@@ -99,7 +61,8 @@
         <% }); %>
     </script>
     
-    <script id='countyTemplate' type='text/ractive'>
+    <!-- county select template -->
+    <script id='countyTemplate' type='text/template'>
         <span class="sub-header">Location: </span>
          <select id="county" name="county" on-change='searchCounty' title="Specify the county you live in or where the item can be picked up from" 
                     required="true" aria-required="true" aria-invalid="false">
@@ -137,6 +100,12 @@
             <option value="Wexford">Wexford</option>
             <option value="Wicklow">Wicklow</option>
         </select>
+    </script>
+    
+    <!-- section select template -->
+    <script id='searchTemplate' type='text/template'>
+         <span class="sub-header">Search: </span>
+         <input type="text" name="word-search" id="word-search" value=""/>
     </script>
   
   

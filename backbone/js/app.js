@@ -68,12 +68,14 @@ $(document).ready(function(){
   
   var View = Backbone.View.extend({
     events: {
-      "change #county": "change"
+      "change #county": "change",
+      "change #section": "change"
     },
     template: _.template($('#countyTemplate').html()),
   
     change: function(e){
       var selectedCounty = $(e.currentTarget).val();
+      console.log("e.currentTarget: ",e.currentTarget);
       searchFilters["area"] = [selectedCounty];
       app = new adsView({
           // define the el where the view will render
@@ -86,8 +88,30 @@ $(document).ready(function(){
       this.$el.html(this.template());
     }
   });
-  
   new View({ el: "#countyContainer" }).render();
+  
+  var searchView = Backbone.View.extend({
+    events: {
+      "blur #word-search": "change"
+    },
+    template: _.template($('#searchTemplate').html()),
+  
+    change: function(e){
+      var words = $(e.currentTarget).val();
+      console.log("e.currentTarget: ",e.currentTarget);
+      searchFilters["words"] = [words];
+      app = new adsView({
+          // define the el where the view will render
+          el: $('#ads-container')
+      });
+      app.render();
+    },
+  
+    render: function(){
+      this.$el.html(this.template());
+    }
+  });
+  new searchView({ el: "#searchContainer" }).render();
 
 });
 
