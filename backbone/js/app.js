@@ -68,8 +68,7 @@ $(document).ready(function(){
   
   var View = Backbone.View.extend({
     events: {
-      "change #county": "change",
-      "change #section": "change"
+      "change #county": "change"
     },
     template: _.template($('#countyTemplate').html()),
   
