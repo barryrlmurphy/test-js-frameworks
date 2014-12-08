@@ -29,7 +29,8 @@ $(document).ready(function(){
                   dataType: 'json',
                   contentType: "application/json",
                   data: JSON.stringify(searchFilters),
-                  url: that.url
+                  url: that.url,
+                  processData: true
               }, options);
   
               return $.ajax(params);
@@ -55,7 +56,6 @@ $(document).ready(function(){
   
       render: function() {
         console.log("render");
-        console.log(this.collection.toJSON());
           // Fill the html with the template and the collection
           $(this.el).html(this.template({ ads: this.collection.toJSON() }));
       }
@@ -73,11 +73,12 @@ $(document).ready(function(){
     template: _.template($('#countyTemplate').html()),
   
     change: function(e){
-      console.log( "change event" );
       var selectedCounty = $(e.currentTarget).val();
-      console.log("selectedCounty", selectedCounty);
       searchFilters["area"] = [selectedCounty];
-      console.log("searchFilters", searchFilters);
+      app = new adsView({
+          // define the el where the view will render
+          el: $('#ads-container')
+      });
       app.render();
     },
   
@@ -91,5 +92,5 @@ $(document).ready(function(){
 });
 
 //"section": "all", "startTime":1416325931669,"max":40,"start":0,"words":"","source":"all","area":["Ireland"],"adType":"forsale","sort":"publishDate desc"}
-var searchFilters = {"section": "all", "startTime":1416325931669,"max":40,"start":0,"words":"","source":"all","area":["Cork"],"adType":"forsale","sort":"publishDate desc"};
+var searchFilters = {"section": "all", "startTime":1416325931669,"max":40,"start":0,"words":"","source":"all","area":["Ireland"],"adType":"forsale","sort":"publishDate desc"};
 
